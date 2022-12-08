@@ -3,13 +3,11 @@ def Astar(a,vis,src,dest):
     cost=[]
     vc=[0]*n
     stk.append(src)
-    cost.append(cost)
-    path=[]
-    c=0
-    while( len(stk)>0 and stk[len(stk)-1]!=dest):
+    cost.append(h[src])
+    while( len(stk)>0):
         ele=stk.pop()
         cost.pop()
-        path.append(ele)
+        print(ele,end=" ")
         for i in range(0,len(a)):
             if(a[ele][i]>0 and vis[i]==0):
                 stk.insert(0,i)
@@ -17,14 +15,6 @@ def Astar(a,vis,src,dest):
                 cost.insert(0,h[i]+vc[i])
                 vis[i]=1
         sort(stk,cost)
-    if(len(stk)==0):
-        print("Goal state not found")
-    else:
-        path.append(dest)
-        c=0
-        for i in range(0,len(path)-1):
-            c+=a[path[i]][path[i+1]]
-        print("shortest path Goal found in this path  ",path,"with min cost ",c)
 
 def sort(stk,cost):
     for i in range(0,len(stk)):
